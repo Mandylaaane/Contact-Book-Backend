@@ -1,0 +1,28 @@
+#contact-book-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.contacts-title {
+  font-size: 3rem;
+}
+
+#search-form {
+}
+
+#search-button {
+  width: 8rem;
+  height: 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+#search-field {
+  width: 25rem;
+  height: 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}

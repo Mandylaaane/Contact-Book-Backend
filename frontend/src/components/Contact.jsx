@@ -1,14 +1,14 @@
-// import React from "react";
+import React from "react";
 
-// export default function Contact({ firstName, lastName, phone, address }) {
-//   return (
-//     <>
-//       <div id="contact-item">
-//         <div>{firstName}</div>
-//         <div>{lastName}</div>
-//         <div>{phone}</div>
-//         <div>{address}</div>
-//       </div>
-//     </>
-//   );
-// }
+export default function Contact({ firstName, lastName, phone, address }) {
+  return (
+    <>
+      <div id="contact-item">
+        <div>{firstName}</div>
+        <div>{lastName}</div>
+        <div>{phone}</div>
+        <div>{address}</div>
+      </div>
+    </>
+  );
+}

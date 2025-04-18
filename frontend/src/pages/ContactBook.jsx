@@ -28,14 +28,8 @@ export default function ContactBook() {
         </form>
       </div>
       <div id="contact-search-result">
+        <h2>DISPLAY CONTACTS</h2>
         {showContacts && <ContactList />}
-        {showContacts && (
-          <ContactList
-            contacts={dBContacts.map((contact) => {
-              return contact;
-            })}
-          />
-        )}
       </div>
     </>
   );

@@ -5,7 +5,9 @@ Backend Course: Individual Task
 SUMMARY:
 
 This is a Contact Book Application.
-Containing a backend database
+Store your personal contacts by name, phone, email and address.
+Can be searched, edited and deleted.
+Containing custom built backend API and simple frontend.
 
 HOW TO RUN:
 

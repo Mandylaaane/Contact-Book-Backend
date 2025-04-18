@@ -1,0 +1,86 @@
+#!/usr/bin/env node
+
+/**
+ * MODULE DEPENENCIES
+ */
+
+const server = require("../server");
+const debug = require("debug")("api-task:server");
+const http = require("http");
+
+/**
+ * GET PORT FROM ENVIRONMENT & STORE IN EXPRESS
+ */
+
+const port = normalizePort(process.env.PORT || "3000");
+server.set("port", port);
+
+/**
+ * WRAPS EXPRESS APP IN A NODE HTTP SERVER.
+ */
+
+const serverHTTP = http.createServer(server);
+
+/**
+ * STARTS SERVER, HANDLES ERROR & LOGS WHEN SERVER READY.
+ */
+
+serverHTTP.listen(port);
+serverHTTP.on("error", onError);
+serverHTTP.on("listening", onListening);
+
+/**
+ * ACEEPTS PORT INTO NUMBER, STRING, OR RETURNS VALID PORT OR FALSE.
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // NAMED PIPE
+    return val;
+  }
+
+  if (port >= 0) {
+    // PORT NUMBER
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * EVENT LISTENER FOR HTTP SERVER, HANDLES SERVER STARTUP ERRORS
+ */
+
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+  // SPECIFIC LISTEN ERROR, + KIND ERROR MESSAGES
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * LOGS WHEN SERVER IS LISTENING, USING DEBUG MODULE.
+ */
+
+function onListening() {
+  const addr = serverHTTP.address();
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
+}

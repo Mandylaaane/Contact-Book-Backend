@@ -1,0 +1,17 @@
+GET http://localhost:3000/
+###
+
+GET http://localhost:3000/contacts 
+###
+
+GET http://localhost:3000/firstname/:firstName 
+###
+
+POST http://localhost:3000/contacts/createnew 
+###
+
+PUT http://localhost:3000/contact/update/:id 
+
+###
+
+DELETE http://localhost:3000/contact/delete/:id 

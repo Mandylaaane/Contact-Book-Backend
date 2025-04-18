@@ -1,12 +1,12 @@
-import "./App.css";
-import ContactBook from "./pages/ContactBook";
+// import "./App.css";
+// import ContactBook from "./pages/ContactBook";
 
-function App() {
-  return (
-    <>
-      <ContactBook />
-    </>
-  );
-}
+// function App() {
+//   return (
+//     <>
+//       <ContactBook />
+//     </>
+//   );
+// }
 
-export default App;
+// export default App;

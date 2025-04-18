@@ -20,9 +20,9 @@ SECURITY:
 - LOGGING & AUDIT:
   With no action logging or audit, threats/attacks may go undetected.
 
-* Mitigation:
+Mitigation:
 
 - UNSECURE MONGODB:
   Having no authenication to my database is a threat, can lead to datatheft or unauthorized modifications.
 
-* No mitigation created, but enabling authentication would help.
+No mitigation created, but enabling authentication would help.

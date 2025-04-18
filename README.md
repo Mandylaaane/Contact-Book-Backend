@@ -9,11 +9,15 @@ Containing a backend database
 
 HOW TO RUN:
 
-Terminal commands:
+Terminal commands: (need to be added)
 
 A11y & SEO:
 
+Handle Keyboard Events, aria-labels (need to be created)
+
 TRACKING:
+
+Used Google Analytics, (write more here)
 
 SECURITY:
 

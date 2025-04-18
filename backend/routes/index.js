@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   res.send("Welcome to Contact Book!");
 });
 
-// GET ALL CONTACTS
+// GET: ALL CONTACTS
 router.get("/contacts", async (req, res) => {
   try {
     const contactsAll = await Contact.find();

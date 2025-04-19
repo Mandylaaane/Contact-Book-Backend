@@ -2,7 +2,7 @@
 
 const Contact = require("../models/contactModel");
 
-// GET ALL CONTACTS INFO
+// GET: ALL CONTACTS INFO
 const getContactsAll = async (req, res) => {
   try {
     const contactsAll = await Contact.find();
@@ -12,7 +12,7 @@ const getContactsAll = async (req, res) => {
   }
 };
 
-// GET CONTACT BY FIRST NAME
+// GET: CONTACT BY FIRST NAME
 const getContactByFirstName = async (req, res) => {
   try {
     const contactByFirstName = await Contact.findOne({
@@ -27,7 +27,7 @@ const getContactByFirstName = async (req, res) => {
   }
 };
 
-// CREATE NEW CONTACT
+// POST: CREATE NEW CONTACT
 const createNewContact = async (req, res) => {
   const { first_name, last_name, phone, email, address } = req.body;
   const newContact = new Contact({
@@ -45,7 +45,7 @@ const createNewContact = async (req, res) => {
   }
 };
 
-// UPDATE CONTACT
+// PUT: UPDATE CONTACT
 const updateContact = async (req, res) => {
   try {
     const updatedContact = await Contact.findByIdAndUpdate(
@@ -80,17 +80,3 @@ module.exports = {
   updateContact,
   deleteContact,
 };
-
-// USING MONGODB NATIVE WAY
-// const { MongoClient } = require("mongodb");
-
-// const client = new MongoClient("mongodb://localhost:27017");
-// const database = "contactBookDataBase";
-// const collection = "contacts";
-// const Contact = require("../models/contact");
-
-// // USE MONGODB LOCALLY
-// const connectContactDB = async () => {
-//   await client.connect();
-//   return client.db(database).collection(collection);
-// };

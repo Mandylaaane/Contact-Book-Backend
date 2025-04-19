@@ -1,36 +1,118 @@
 import "./ContactBook.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ContactList from "../components/ContactList";
-
-// DATABASE
-// import { getContacts } from "../../../backend/models/getContacts";
+import CreateOrEdit from "../components/CreateOrEdit";
 
 export default function ContactBook() {
-  const [showContacts, setShowContacts] = useState(true);
-  // COMMENT: let dBContacts = getContacts();
+  const [contacts, setContacts] = useState([]);
+  const [query, setQuery] = useState("");
+  const [filteredContacts, setFilteredContacts] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [editContact, setEditContact] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/contacts")
+      .then((response) => response.json())
+      .then((data) => {
+        setContacts(data);
+        setFilteredContacts(data);
+      })
+      .catch((error) => console.error("Error fetching contacts:", error));
+  }, []);
+  // SEARCH CONTACTS
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const q = query.toLowerCase();
+    const filtered = contacts.filter(
+      (contact) =>
+        contact.first_name.toLowerCase().includes(q) ||
+        contact.last_name.toLowerCase().includes(q) ||
+        contact.email.toLowerCase().includes(q)
+    );
+    setFilteredContacts(filtered);
+  };
+
+  const handleCreate = () => {
+    setEditContact(null);
+    setShowForm(true);
+  };
+
+  const handleEdit = (contact) => {
+    setEditContact(contact);
+    setShowForm(true);
+  };
+  // SUBMIT
+  const handleFormSubmit = (formData) => {
+    if (editContact) {
+      // EDIT EXISTING
+      fetch(`http://localhost:5000/contacts/${editContact._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          setShowForm(false);
+          setEditContact(null);
+          fetchContacts();
+        });
+    } else {
+      // CREATE NEW
+      fetch("http://localhost:5000/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          setShowForm(false);
+          fetchContacts();
+        });
+    }
+  };
+
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditContact(null);
+  };
 
   return (
     <>
       <div id="contact-book-box">
-        <h1 class="contacts-title">MY CONTACTS</h1>
+        <h1 class="contacts-title" aria-label="title">
+          MY CONTACTS
+        </h1>
         <br></br>
-        <form role="search" id="search-form">
-          <button type="submit" id="search-button">
-            SEARCH:
-          </button>
+        <form onSubmit={handleSearch} id="search-form" aria-label="search-form">
           <input
-            type="search"
+            type="text"
             id="search-field"
-            name="q"
-            placeholder="enter first and/or last name"
-            aria-label="search field for your contacts"
+            placeholder="  enter first and/or last name"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="contact-search-input"
           ></input>
+          <button type="submit" id="search-button" aria-label="search-button">
+            SEARCH
+          </button>
         </form>
       </div>
-      <div id="contact-search-result">
+      <div id="contact-search-result" aria-label="search-results">
         <h2>DISPLAY CONTACTS</h2>
-        {showContacts && <ContactList />}
+        <ContactList contacts={filteredContacts} onEdit={handleEdit} />
       </div>
+      <button
+        type="button"
+        onClick={handleCreate}
+        aria-label="create-new-contact-button"
+      >
+        CREATE NEW
+      </button>
+      <CreateOrEdit
+        initialData={editContact}
+        onSubmit={handleFormSubmit}
+        onCancel={handleCancel}
+      />
     </>
   );
 }

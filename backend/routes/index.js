@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const Contact = require("../models/contactModel");
+const cors = require("cors");
+router.use(cors());
 
 // TEST
 router.get("/", (req, res) => {

@@ -25,7 +25,9 @@ export default function Contact({
             </p>
           </div>
         )}
-        <button onClick={() => onEdit(contact)}>EDIT</button>
+        <button onClick={() => onEdit(contact)} id="edit-button">
+          EDIT
+        </button>
       </div>
     </>
   );

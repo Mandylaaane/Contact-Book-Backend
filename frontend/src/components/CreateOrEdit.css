@@ -1,0 +1,19 @@
+#create-form-inputs {
+  width: 25rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#create-form-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#create-form-buttons button {
+  width: 5rem;
+  height: 2rem;
+  font-size: medium;
+  margin: 20px;
+}

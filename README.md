@@ -4,22 +4,45 @@ Backend Course: Individual Task
 
 SUMMARY:
 
-This is a Contact Book Application.
-Store your personal contacts by name, phone, email and address.
-Can be searched, edited and deleted.
+This is a Contact Book Application, where user can store personal contacts
+by name, phone, email and address. Data can be searched, edited and deleted.
 Containing custom built backend API and simple frontend.
+(Not all frontend functionality is active yet.)
+
+Built with;
+
+- Backend: Express.js, MongoDB, Mongoose.
+- Frontend: React, JavaScript.
 
 HOW TO RUN:
 
-Terminal commands: (need to be added)
+- To run backend: npm run watch (http://localhost:3000/)
+- To run frontend: npm run dev (http://localhost:5173/)
+- MongoDb (local, not atlas): "mongodb://localhost:27017/contactBookDataBase"
+
+To test search function in frontend,
+search for name; Amanda, Jessie or George.
+
+(Intended to not be displayed before search, plus frontend for save and display saved contact is missing. Will add in future.)
 
 A11y & SEO:
 
-Handle Keyboard Events, aria-labels (need to be created)
+Simple, straight forward front end with clear display and descriptions of what each input, button and titles are, semantic html including aria-labels.
+
+According to lighthouse:
+SEO
+
+- Crawlable links.
+- Links have descriptive text.
+- Sussesful HTTP status code.
+  A11Y
+- Accessible names of buttons.
+- Background/Foreground colors sufficient contrast ratio.
+- Touch targets have sufficient size and spacing.
 
 TRACKING:
 
-Used Google Analytics, (write more here)
+Used Google Analytics to track user interactions.
 
 SECURITY:
 

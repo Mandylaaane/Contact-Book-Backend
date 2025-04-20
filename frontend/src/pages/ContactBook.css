@@ -10,14 +10,12 @@
   font-size: 3rem;
 }
 
-#search-form {
-}
-
 #search-button {
   width: 8rem;
-  height: 3rem;
+  height: 3.2rem;
   font-size: 1.3rem;
   font-weight: bold;
+  margin-left: 1rem;
 }
 
 #search-field {
@@ -25,4 +23,27 @@
   height: 3rem;
   font-size: 1.3rem;
   font-weight: bold;
+}
+
+#contact-search-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+#new-and-edit-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+#new-and-edit-buttons button {
+  width: 10rem;
+  height: 2rem;
+  font-size: medium;
+  margin: 20px;
 }

@@ -45,7 +45,7 @@ export default function ContactBook() {
   const handleFormSubmit = (formData) => {
     if (editContact) {
       // EDIT EXISTING
-      fetch(`http://localhost:5000/contacts/${editContact._id}`, {
+      fetch(`http://localhost:3000/contacts/${editContact._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -58,7 +58,7 @@ export default function ContactBook() {
         });
     } else {
       // CREATE NEW
-      fetch("http://localhost:5000/contacts", {
+      fetch("http://localhost:3000/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -79,7 +79,7 @@ export default function ContactBook() {
   return (
     <>
       <div id="contact-book-box">
-        <h1 class="contacts-title" aria-label="title">
+        <h1 className="contacts-title" aria-label="title">
           MY CONTACTS
         </h1>
         <br></br>
@@ -98,21 +98,23 @@ export default function ContactBook() {
         </form>
       </div>
       <div id="contact-search-result" aria-label="search-results">
-        <h2>DISPLAY CONTACTS</h2>
+        <h2 id="display-title">DISPLAY CONTACTS</h2>
         <ContactList contacts={filteredContacts} onEdit={handleEdit} />
       </div>
-      <button
-        type="button"
-        onClick={handleCreate}
-        aria-label="create-new-contact-button"
-      >
-        CREATE NEW
-      </button>
-      <CreateOrEdit
-        initialData={editContact}
-        onSubmit={handleFormSubmit}
-        onCancel={handleCancel}
-      />
+      <div id="new-and-edit-buttons">
+        <button
+          type="button"
+          onClick={handleCreate}
+          aria-label="create-new-contact-button"
+        >
+          CREATE NEW
+        </button>
+        <CreateOrEdit
+          initialData={editContact}
+          onSubmit={handleFormSubmit}
+          onCancel={handleCancel}
+        />
+      </div>
     </>
   );
 }
